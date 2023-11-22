@@ -2,7 +2,7 @@
   <div class="helloworld">
     <h1>{{ message }}</h1>
     <button v-if="showButton" @click="buttonClick" class="hellobutton">Cliquez-moi</button>
-    <img src="../assets/huge-picture.jpg" :style="{ width: imageWidth + 'px', height: imageHeight + 'px', top: imageTop + 'px', left: imageLeft + 'px' }" alt="Changing Image">
+    <img width="100" height="100" src="../assets/huge-picture.jpg" :style="{ width: imageWidth + 'px', height: imageHeight + 'px', top: imageTop + 'px', left: imageLeft + 'px' }" alt="Changing Image">
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
       imageLeft: 0,
       showButton: true
     };
+  },
+  beforeMount() {
+    for (let i = 0; i < 100000; i++) {
+      console.log(i);
+    }
   },
   mounted() {
     setInterval(() => {

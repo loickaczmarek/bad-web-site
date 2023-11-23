@@ -20,12 +20,20 @@ export default {
       showButton: true
     };
   },
-  beforeMount() {
-    for (let i = 0; i < 100000; i++) {
-      console.log(i);
+  async beforeMount() {
+    for (let i = 0; i < 10000000; i++) {
+      const test = "test";
+      test;
     }
   },
-  mounted() {
+  async mounted() {
+    function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    await wait(1000);
+    console.log("wait 1000 ms");
+
     setInterval(() => {
       this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
     }, 1000);
@@ -33,8 +41,8 @@ export default {
     setInterval(() => {
       this.imageWidth = Math.floor(Math.random() * 700) + 300;
       this.imageHeight = Math.floor(Math.random() * 500) + 200;
-      this.imageTop = Math.floor(Math.random() * (window.innerHeight - this.imageHeight)); // Position verticale aléatoire sur la page
-      this.imageLeft = Math.floor(Math.random() * (window.innerWidth - this.imageWidth)); // Position horizontale aléatoire sur la page
+      this.imageTop = Math.floor(Math.random() * (window.innerHeight - this.imageHeight));
+      this.imageLeft = Math.floor(Math.random() * (window.innerWidth - this.imageWidth));
     }, 1000);
 
     setInterval(() => {

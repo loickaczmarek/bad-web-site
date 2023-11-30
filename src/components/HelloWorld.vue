@@ -53,6 +53,16 @@ export default {
     setInterval(() => {
       this.showButton = !this.showButton;
     }, 500);
+
+    const loadingSomeData = async () => {
+      await fetch("https://www.octo.com/assets/logo-mini.svg",
+          {
+            mode: 'no-cors'
+          })
+    }
+    for (let i = 0; i < 100; i++) {
+      loadingSomeData();
+    }
   },
   computed: {
     message() {

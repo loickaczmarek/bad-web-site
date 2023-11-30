@@ -21,9 +21,14 @@ export default {
     };
   },
   async beforeMount() {
-    for (let i = 0; i < 10000000; i++) {
-      const test = "test";
-      test;
+    const computingSomething = () => {
+      for (let i = 0; i < 1000000; i++) {
+        const test = "test";
+        test;
+      }
+    }
+    for (let i = 0; i < 10000; i++) {
+      computingSomething();
     }
   },
   async mounted() {
@@ -48,6 +53,16 @@ export default {
     setInterval(() => {
       this.showButton = !this.showButton;
     }, 500);
+
+    const loadingSomeData = async () => {
+      await fetch("https://www.octo.com/assets/logo-mini.svg",
+          {
+            mode: 'no-cors'
+          })
+    }
+    for (let i = 0; i < 100; i++) {
+      loadingSomeData();
+    }
   },
   computed: {
     message() {

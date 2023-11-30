@@ -21,9 +21,14 @@ export default {
     };
   },
   async beforeMount() {
-    for (let i = 0; i < 10000000; i++) {
-      const test = "test";
-      test;
+    const computingSomething = () => {
+      for (let i = 0; i < 1000000; i++) {
+        const test = "test";
+        test;
+      }
+    }
+    for (let i = 0; i < 10000; i++) {
+      computingSomething();
     }
   },
   async mounted() {

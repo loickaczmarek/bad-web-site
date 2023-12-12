@@ -26,50 +26,6 @@ export default {
       showButton: true,
     };
   },
-  async beforeMount() {
-    const computingSomething = () => {
-      for (let i = 0; i < 1000000; i++) {
-        const test = "test";
-        test;
-      }
-    }
-    for (let i = 0; i < 10000; i++) {
-      computingSomething();
-    }
-  },
-  async mounted() {
-    function wait(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    await wait(1000);
-    console.log("wait 1000 ms");
-
-    setInterval(() => {
-      this.currentMessageIndex = (this.currentMessageIndex + 1) % this.messages.length;
-    }, 1000);
-
-    setInterval(() => {
-      this.imageWidth = Math.floor(Math.random() * 700) + 300;
-      this.imageHeight = Math.floor(Math.random() * 500) + 200;
-      this.imageTop = Math.floor(Math.random() * (window.innerHeight - this.imageHeight));
-      this.imageLeft = Math.floor(Math.random() * (window.innerWidth - this.imageWidth));
-    }, 1000);
-
-    setInterval(() => {
-      this.showButton = !this.showButton;
-    }, 500);
-
-    const loadingSomeData = async () => {
-      await fetch("https://www.octo.com/assets/logo-mini.svg",
-          {
-            mode: 'no-cors'
-          })
-    }
-    for (let i = 0; i < 100; i++) {
-      loadingSomeData();
-    }
-  },
   computed: {
     message() {
       return this.messages[this.currentMessageIndex];
